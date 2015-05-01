@@ -50,6 +50,25 @@
     return array;
   }
 
+  function isString(value) {
+    return typeof value == 'string';
+  }
+
+  function isArray(value) {
+    return Object.prototype.toString.call(value) === '[object Array]';
+  }
+
+  function pick(object, keys) {
+    var newObject = {};
+    keys = (isString(keys) ? [keys] : keys);
+    forEach(keys, function(v) {
+      if (object.hasOwnProperty(v)) {
+        newObject[v] = clone(object[v]);
+      }
+    });
+    return newObject;
+  }
+
   function isObject(value) {
     // Avoid a V8 JIT bug in Chrome 19-20.
     // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
@@ -58,13 +77,12 @@
   }
 
   function clone(value) {
-    return JSON.parse(JSON.stringify(obj));
+    return JSON.parse(JSON.stringify(value));
   }
 
-  var chainFunctions = [map, forEach, isUndefined, has, keys, clone, filter];
+  var chainFunctions = [map, forEach, isUndefined, has, keys, clone, filter, pick, isString, isArray];
 
   var BalsaConstructor = function() {
-
     function balsa(val) {
       var methods = {};
       if(val !== undefined) {
@@ -85,17 +103,16 @@
     balsa.filter = filter;
 
     balsa.isUndefined = isUndefined;
+    balsa.isString = isString;
+    balsa.isArray = isArray;
 
     balsa.has = has;
     balsa.keys = keys;
     balsa.clone = clone;
+    balsa.pick = pick;
 
     return balsa;
   };
-
-
-
-
 
   root['𐅉'] = root.b = new BalsaConstructor();
 
