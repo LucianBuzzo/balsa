@@ -1,4 +1,4 @@
-; (function() {
+;(function() {
   var root = this;
 
   function toArray(val) {
@@ -18,11 +18,50 @@
     for(i; i < collection.length; i++) {
       newCollection.push(fn(collection[i]));
     }
-
     return newCollection;
   }
 
-  var chainFunctions = [map, forEach];
+  function filter(collection, fn) {
+    var i = 0;
+    var newCollection = [];
+    for(i; i < collection.length; i++) {
+      if (fn(collection[i])) {
+        newCollection.push(collection[i]);
+      }
+    }
+    return newCollection;
+  }
+
+  function isUndefined(value) {
+    return typeof value == 'undefined';
+  }
+
+  function has(object, key) {
+    return object ? hasOwnProperty.call(object, key) : false;
+  }
+
+  function keys(object) {
+    var array = [];
+    for (var key in object) {
+      if (object.hasOwnProperty(key)) {
+        array.push(key);
+      }
+    }
+    return array;
+  }
+
+  function isObject(value) {
+    // Avoid a V8 JIT bug in Chrome 19-20.
+    // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+    var type = typeof value;
+    return type == 'function' || (value && type == 'object') || false;
+  }
+
+  function clone(value) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+
+  var chainFunctions = [map, forEach, isUndefined, has, keys, clone, filter];
 
   var BalsaConstructor = function() {
 
@@ -43,6 +82,13 @@
 
     balsa.map = map;
     balsa.forEach = forEach;
+    balsa.filter = filter;
+
+    balsa.isUndefined = isUndefined;
+
+    balsa.has = has;
+    balsa.keys = keys;
+    balsa.clone = clone;
 
     return balsa;
   };
