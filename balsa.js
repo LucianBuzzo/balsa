@@ -24,9 +24,9 @@
 
   var chainFunctions = [map, forEach];
 
-  var LiteDashConstructor = function() {
+  var BalsaConstructor = function() {
 
-    function liteDash(val) {
+    function balsa(val) {
       var methods = {};
       if(val !== undefined) {
         forEach(chainFunctions, function(chainable) {
@@ -41,16 +41,16 @@
       }
     }
 
-    liteDash.map = map;
-    liteDash.forEach = forEach;
+    balsa.map = map;
+    balsa.forEach = forEach;
 
-    return liteDash;
+    return balsa;
   };
 
 
 
 
 
-  root.l = new LiteDashConstructor();
+  root['𐅉'] = root.b = new BalsaConstructor();
 
 }.call(this));
