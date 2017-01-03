@@ -35,6 +35,7 @@ testBlock('When using the "isUndefined" method:', function() {
   assert(!B.isUndefined(false), 'It should return false if the value is a boolean');
   assert(!B.isUndefined('string'), 'It should return false if the value is a string');
   assert(!B.isUndefined({ foo: 'bar' }), 'It should return false if the value is an object');
+  assert(!B.isUndefined([1 , 2, 3]), 'It should return false if the value is an array');
   assert(!B.isUndefined(null), 'It should return false if the value is null');
   assert(B.isUndefined(), 'It should return true if called with no value');
   assert(B.isUndefined(undefined), 'It should return true if the value is the type "undefined"');
@@ -59,6 +60,22 @@ testBlock('When using the "isString" method:', function() {
 
   assert(B.isString('string'), 'It should return true if the value is a string');
   assert(B.isString(''), 'It should return true if the value is an empty string');
+});
+
+
+/**
+ * isArray
+ */
+testBlock('When using the "isArray" method:', function() {
+  assert(!B.isArray(1), 'It should return false if the value is a number');
+  assert(!B.isArray(false), 'It should return false if the value is a boolean');
+  assert(!B.isArray('string'), 'It should return false if the value is a string');
+  assert(!B.isArray({ foo: 'bar' }), 'It should return false if the value is an object');
+  assert(!B.isArray(null), 'It should return false if the value is null');
+  assert(!B.isArray(), 'It should return false if called with no value');
+  assert(!B.isArray(undefined), 'It should return false if the value is the type "undefined"');
+
+  assert(B.isArray([]), 'It should return true if the value is an array');
 });
 
 
