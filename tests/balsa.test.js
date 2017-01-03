@@ -10,13 +10,14 @@ const assert = function(expression, message) {
     fail++;
   }
 
-  console.log('    ' + (expression ? 'PASS' : 'FAIL'), message);
+  console.log(expression ? '    PASS' : '--> FAIL', message);
 };
 
 const end = () => {
   console.log(`\r\n${pass} tests passed`);
   console.log(`${fail} tests failed`);
 };
+
 
 /**
  * isUndefined
@@ -27,6 +28,7 @@ const end = () => {
   assert(!B.isUndefined(1), 'It should return false if the value is a number');
   assert(!B.isUndefined(0), 'It should return false if the value is the number zero');
   assert(!B.isUndefined(false), 'It should return false if the value is a boolean');
+  assert(!B.isUndefined('string'), 'It should return false if the value is a string');
   assert(!B.isUndefined({ foo: 'bar' }), 'It should return false if the value is an object');
   assert(!B.isUndefined(null), 'It should return false if the value is null');
   assert(B.isUndefined(), 'It should return true if called with no value');
@@ -37,6 +39,29 @@ const end = () => {
   assert(B.isUndefined(foo), 'It should return true if the value is not defined');
 }());
 
+
+/**
+ * isString
+ */
+(function() {
+  console.log('When using the "isString" method:');
+
+  assert(!B.isString(1), 'It should return false if the value is a number');
+  assert(!B.isString(0), 'It should return false if the value is the number zero');
+  assert(!B.isString(false), 'It should return false if the value is a boolean');
+  assert(!B.isString({ foo: 'bar' }), 'It should return false if the value is an object');
+  assert(!B.isString(null), 'It should return false if the value is null');
+  assert(!B.isString(), 'It should return false if called with no value');
+  assert(!B.isString(undefined), 'It should return false if the value is the type "undefined"');
+
+  assert(B.isString('string'), 'It should return true if the value is a string');
+  assert(B.isString(''), 'It should return true if the value is an empty string');
+}());
+
+
+/**
+ * pick
+ */
 (function() {
   console.log('When using the "pick" method:');
   let testObj = {
