@@ -1,4 +1,10 @@
-!function() {
+!(function (root, factory) {
+  if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.myModule = factory();
+  }
+}(this, function factory() {
   var root = this;
 
   var toArray = function toArray(val) {
@@ -117,4 +123,4 @@
 
   root.B = new BalsaConstructor();
 
-}.call(this);
+}));
