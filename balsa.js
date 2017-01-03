@@ -14,13 +14,7 @@
   };
 
   var keys = function keys(object) {
-    var array = [];
-    for (var key in object) {
-      if (object.hasOwnProperty(key)) {
-        array.push(key);
-      }
-    }
-    return array;
+    return Object.keys(object);
   };
 
   var isString = function isString(value) {
