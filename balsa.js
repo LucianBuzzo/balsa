@@ -90,6 +90,5 @@
     return balsa;
   };
 
-  root.B = new BalsaConstructor();
-
+  return new BalsaConstructor();
 }));
