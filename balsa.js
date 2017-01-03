@@ -5,8 +5,6 @@
     root.myModule = factory();
   }
 }(this, function factory() {
-  var root = this;
-
   var toArray = function toArray(val) {
     return Array.prototype.slice.call(val);
   };
@@ -59,36 +57,17 @@
     return JSON.parse(JSON.stringify(value));
   };
 
-  var chainFunctions = [isUndefined, has, keys, clone, pick, isString, isArray];
+  var Balsa = function Balsa() { };
 
-  var BalsaConstructor = function() {
-    var balsa = function balsa(val) {
-      var methods = {};
-      if (val !== undefined) {
-        chainFunctions.forEach(function(chainable) {
-          methods[chainable.name] = function() {
-            var argsArray = toArray(arguments);
-            argsArray.unshift(val);
-            return chainable.apply(null, argsArray);
-          };
-        });
+  Balsa.prototype.isUndefined = isUndefined;
+  Balsa.prototype.isString = isString;
+  Balsa.prototype.isArray = isArray;
+  Balsa.prototype.isObject = isObject;
 
-        return methods;
-      }
-    };
+  Balsa.prototype.has = has;
+  Balsa.prototype.keys = keys;
+  Balsa.prototype.clone = clone;
+  Balsa.prototype.pick = pick;
 
-    balsa.isUndefined = isUndefined;
-    balsa.isString = isString;
-    balsa.isArray = isArray;
-    balsa.isObject = isObject;
-
-    balsa.has = has;
-    balsa.keys = keys;
-    balsa.clone = clone;
-    balsa.pick = pick;
-
-    return balsa;
-  };
-
-  return new BalsaConstructor();
+  return new Balsa();
 }));
