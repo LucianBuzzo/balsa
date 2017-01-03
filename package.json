@@ -1,0 +1,23 @@
+{
+  "name": "balsa",
+  "version": "1.0.0",
+  "description": "A tiny library of utility functions",
+  "main": "balsa.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucianBuzzo/balsa.git"
+  },
+  "keywords": [
+    "utility",
+    "lightweight"
+  ],
+  "author": "Lucian Buzzo <lucian.buzzo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LucianBuzzo/balsa/issues"
+  },
+  "homepage": "https://github.com/LucianBuzzo/balsa#readme"
+}
