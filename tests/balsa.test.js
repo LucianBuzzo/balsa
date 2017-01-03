@@ -108,6 +108,37 @@ testBlock('When using the "has" method:', function() {
 
 
 /**
+ * keys
+ */
+testBlock('When using the "keys" method:', function() {
+  const testObj = {
+    foo: 'bar',
+    hello: 'world'
+  };
+
+  const result = B.keys(testObj);
+
+  assert(result.length, 'It should return an array with a length equal to the number of object keys');
+  assert(result.indexOf('foo') > -1 && result.indexOf('foo') > -1, 'It should return an array containing the object\'s keys');
+});
+
+
+/**
+ * clone
+ */
+testBlock('When using the "clone" method:', function() {
+  let initial = { foo: 'bar' };
+  let result = B.clone(initial);
+
+  assert(initial !== result, 'It should return a different object to the one provided');
+
+  initial.hello = 'world';
+
+  assert(!result.hasOwnProperty('hello'), 'Modifying the original object should not affect the cloned object');
+});
+
+
+/**
  * pick
  */
 testBlock('When using the "pick" method:', function() {
