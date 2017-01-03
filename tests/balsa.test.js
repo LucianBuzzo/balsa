@@ -35,7 +35,7 @@ testBlock('When using the "isUndefined" method:', function() {
   assert(!B.isUndefined(false), 'It should return false if the value is a boolean');
   assert(!B.isUndefined('string'), 'It should return false if the value is a string');
   assert(!B.isUndefined({ foo: 'bar' }), 'It should return false if the value is an object');
-  assert(!B.isUndefined([1 , 2, 3]), 'It should return false if the value is an array');
+  assert(!B.isUndefined([1, 2, 3]), 'It should return false if the value is an array');
   assert(!B.isUndefined(null), 'It should return false if the value is null');
   assert(B.isUndefined(), 'It should return true if called with no value');
   assert(B.isUndefined(undefined), 'It should return true if the value is the type "undefined"');
@@ -76,6 +76,33 @@ testBlock('When using the "isArray" method:', function() {
   assert(!B.isArray(undefined), 'It should return false if the value is the type "undefined"');
 
   assert(B.isArray([]), 'It should return true if the value is an array');
+});
+
+
+/**
+ * isObject
+ */
+testBlock('When using the "isObject" method:', function() {
+  assert(!B.isObject(1), 'It should return false if the value is a number');
+  assert(!B.isObject(false), 'It should return false if the value is a boolean');
+  assert(!B.isObject('string'), 'It should return false if the value is a string');
+  assert(!B.isObject([]), 'It should return false if the value is an array');
+  assert(!B.isObject(function() { }), 'It should return false if the value is a function');
+  assert(!B.isObject(null), 'It should return false if the value is null');
+  assert(!B.isObject(), 'It should return false if called with no value');
+  assert(!B.isObject(undefined), 'It should return false if the value is the type "undefined"');
+
+  assert(B.isObject({ foo: 'bar' }), 'It should return true if the value is an object');
+});
+
+
+/**
+ * has
+ */
+testBlock('When using the "has" method:', function() {
+  const testObj = { foo: 'bar' };
+  assert(!B.has(testObj, 'hello'), 'It should return false if the object doesn\'t contain the given key');
+  assert(B.has(testObj, 'foo'), 'It should return true if the object contains the given key');
 });
 
 
