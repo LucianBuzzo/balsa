@@ -5,10 +5,6 @@
     root.myModule = factory();
   }
 }(this, function factory() {
-  var toArray = function toArray(val) {
-    return Array.prototype.slice.call(val);
-  };
-
   var isUndefined = function isUndefined(value) {
     return typeof value === 'undefined';
   };
