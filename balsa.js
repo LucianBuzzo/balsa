@@ -1,46 +1,46 @@
-;(function() {
+!function() {
   var root = this;
 
-  function toArray(val) {
+  var toArray = function toArray(val) {
     return Array.prototype.slice.call(val);
-  }
+  };
 
-  function forEach(collection, fn) {
+  var forEach = function forEach(collection, fn) {
     var i = 0;
-    for(i; i < collection.length; i++) {
+    for (i; i < collection.length; i++) {
       fn(collection[i]);
     }
-  }
+  };
 
-  function map(collection, fn) {
+  var map = function map(collection, fn) {
     var i = 0;
     var newCollection = [];
-    for(i; i < collection.length; i++) {
+    for (i; i < collection.length; i++) {
       newCollection.push(fn(collection[i]));
     }
     return newCollection;
-  }
+  };
 
-  function filter(collection, fn) {
+  var filter = function filter(collection, fn) {
     var i = 0;
     var newCollection = [];
-    for(i; i < collection.length; i++) {
+    for (i; i < collection.length; i++) {
       if (fn(collection[i])) {
         newCollection.push(collection[i]);
       }
     }
     return newCollection;
-  }
+  };
 
-  function isUndefined(value) {
-    return typeof value == 'undefined';
-  }
+  var isUndefined = function isUndefined(value) {
+    return typeof value === 'undefined';
+  };
 
-  function has(object, key) {
+  var has = function has(object, key) {
     return object ? hasOwnProperty.call(object, key) : false;
-  }
+  };
 
-  function keys(object) {
+  var keys = function keys(object) {
     var array = [];
     for (var key in object) {
       if (object.hasOwnProperty(key)) {
@@ -48,44 +48,44 @@
       }
     }
     return array;
-  }
+  };
 
-  function isString(value) {
-    return typeof value == 'string';
-  }
+  var isString = function isString(value) {
+    return typeof value === 'string';
+  };
 
-  function isArray(value) {
+  var isArray = function isArray(value) {
     return Object.prototype.toString.call(value) === '[object Array]';
-  }
+  };
 
-  function pick(object, keys) {
+  var pick = function pick(object, keys) {
     var newObject = {};
-    keys = (isString(keys) ? [keys] : keys);
+    keys = isString(keys) ? [keys] : keys;
     forEach(keys, function(v) {
       if (object.hasOwnProperty(v)) {
         newObject[v] = clone(object[v]);
       }
     });
     return newObject;
-  }
+  };
 
-  function isObject(value) {
+  var isObject = function isObject(value) {
     // Avoid a V8 JIT bug in Chrome 19-20.
     // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
     var type = typeof value;
-    return type == 'function' || (value && type == 'object') || false;
-  }
+    return type === 'function' || value && type === 'object' || false;
+  };
 
-  function clone(value) {
+  var clone = function clone(value) {
     return JSON.parse(JSON.stringify(value));
-  }
+  };
 
   var chainFunctions = [map, forEach, isUndefined, has, keys, clone, filter, pick, isString, isArray];
 
   var BalsaConstructor = function() {
-    function balsa(val) {
+    var balsa = function balsa(val) {
       var methods = {};
-      if(val !== undefined) {
+      if (val !== undefined) {
         forEach(chainFunctions, function(chainable) {
           methods[chainable.name] = function() {
             var argsArray = toArray(arguments);
@@ -96,7 +96,7 @@
 
         return methods;
       }
-    }
+    };
 
     balsa.map = map;
     balsa.forEach = forEach;
@@ -105,6 +105,7 @@
     balsa.isUndefined = isUndefined;
     balsa.isString = isString;
     balsa.isArray = isArray;
+    balsa.isObject = isObject;
 
     balsa.has = has;
     balsa.keys = keys;
@@ -114,6 +115,6 @@
     return balsa;
   };
 
-  root['𐅉'] = root.b = new BalsaConstructor();
+  root.B = new BalsaConstructor();
 
-}.call(this));
+}.call(this);
