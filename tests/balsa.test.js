@@ -18,6 +18,25 @@ const end = () => {
   console.log(`${fail} tests failed`);
 };
 
+/**
+ * isUndefined
+ */
+(function() {
+  console.log('When using the "isUndefined" method:');
+
+  assert(!B.isUndefined(1), 'It should return false if the value is a number');
+  assert(!B.isUndefined(0), 'It should return false if the value is the number zero');
+  assert(!B.isUndefined(false), 'It should return false if the value is a boolean');
+  assert(!B.isUndefined({ foo: 'bar' }), 'It should return false if the value is an object');
+  assert(!B.isUndefined(null), 'It should return false if the value is null');
+  assert(B.isUndefined(), 'It should return true if called with no value');
+  assert(B.isUndefined(undefined), 'It should return true if the value is the type "undefined"');
+
+  var foo;
+
+  assert(B.isUndefined(foo), 'It should return true if the value is not defined');
+}());
+
 (function() {
   console.log('When using the "pick" method:');
   let testObj = {
