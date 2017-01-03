@@ -13,18 +13,23 @@ const assert = function(expression, message) {
   console.log(expression ? '    PASS' : '--> FAIL', message);
 };
 
+const testBlock = (message, fn) => {
+  console.log(`\r\n\r\n${message}\r\n`);
+  fn();
+  console.log();
+};
+
 const end = () => {
   console.log(`\r\n${pass} tests passed`);
   console.log(`${fail} tests failed`);
+  console.log();
 };
 
 
 /**
  * isUndefined
  */
-(function() {
-  console.log('When using the "isUndefined" method:');
-
+testBlock('When using the "isUndefined" method:', function() {
   assert(!B.isUndefined(1), 'It should return false if the value is a number');
   assert(!B.isUndefined(0), 'It should return false if the value is the number zero');
   assert(!B.isUndefined(false), 'It should return false if the value is a boolean');
@@ -37,15 +42,13 @@ const end = () => {
   var foo;
 
   assert(B.isUndefined(foo), 'It should return true if the value is not defined');
-}());
+});
 
 
 /**
  * isString
  */
-(function() {
-  console.log('When using the "isString" method:');
-
+testBlock('When using the "isString" method:', function() {
   assert(!B.isString(1), 'It should return false if the value is a number');
   assert(!B.isString(0), 'It should return false if the value is the number zero');
   assert(!B.isString(false), 'It should return false if the value is a boolean');
@@ -56,14 +59,13 @@ const end = () => {
 
   assert(B.isString('string'), 'It should return true if the value is a string');
   assert(B.isString(''), 'It should return true if the value is an empty string');
-}());
+});
 
 
 /**
  * pick
  */
-(function() {
-  console.log('When using the "pick" method:');
+testBlock('When using the "pick" method:', function() {
   let testObj = {
     foo: 1,
     bar: 2,
@@ -80,6 +82,6 @@ const end = () => {
   assert(result2.hasOwnProperty('foo') && result2.hasOwnProperty('bar'), 'If the keys argument is an array, the returned object should contain the chosen property');
 
   assert(Object.keys(result2).length === 2 && !result2.hasOwnProperty('hello'), 'If the keys argument is an array, the returned object should only contain the chosen property');
-}());
+});
 
 end();
