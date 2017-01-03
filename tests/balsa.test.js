@@ -1,3 +1,4 @@
+/* eslint no-undefined: "off" */
 const B = require('../balsa');
 
 let fail = 0;
