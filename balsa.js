@@ -11,33 +11,6 @@
     return Array.prototype.slice.call(val);
   };
 
-  var forEach = function forEach(collection, fn) {
-    var i = 0;
-    for (i; i < collection.length; i++) {
-      fn(collection[i]);
-    }
-  };
-
-  var map = function map(collection, fn) {
-    var i = 0;
-    var newCollection = [];
-    for (i; i < collection.length; i++) {
-      newCollection.push(fn(collection[i]));
-    }
-    return newCollection;
-  };
-
-  var filter = function filter(collection, fn) {
-    var i = 0;
-    var newCollection = [];
-    for (i; i < collection.length; i++) {
-      if (fn(collection[i])) {
-        newCollection.push(collection[i]);
-      }
-    }
-    return newCollection;
-  };
-
   var isUndefined = function isUndefined(value) {
     return typeof value === 'undefined';
   };
@@ -67,7 +40,7 @@
   var pick = function pick(object, keys) {
     var newObject = {};
     keys = isString(keys) ? [keys] : keys;
-    forEach(keys, function(v) {
+    keys.forEach(function(v) {
       if (object.hasOwnProperty(v)) {
         newObject[v] = clone(object[v]);
       }
@@ -86,13 +59,13 @@
     return JSON.parse(JSON.stringify(value));
   };
 
-  var chainFunctions = [map, forEach, isUndefined, has, keys, clone, filter, pick, isString, isArray];
+  var chainFunctions = [isUndefined, has, keys, clone, pick, isString, isArray];
 
   var BalsaConstructor = function() {
     var balsa = function balsa(val) {
       var methods = {};
       if (val !== undefined) {
-        forEach(chainFunctions, function(chainable) {
+        chainFunctions.forEach(function(chainable) {
           methods[chainable.name] = function() {
             var argsArray = toArray(arguments);
             argsArray.unshift(val);
@@ -103,10 +76,6 @@
         return methods;
       }
     };
-
-    balsa.map = map;
-    balsa.forEach = forEach;
-    balsa.filter = filter;
 
     balsa.isUndefined = isUndefined;
     balsa.isString = isString;
