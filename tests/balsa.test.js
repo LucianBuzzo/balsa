@@ -1,5 +1,5 @@
 /* eslint no-undefined: "off" */
-const T = require('./tinyTest');
+const T = require('horsea');
 const B = require('../balsa');
 
 

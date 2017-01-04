@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/LucianBuzzo/balsa/issues"
   },
-  "homepage": "https://github.com/LucianBuzzo/balsa#readme"
+  "homepage": "https://github.com/LucianBuzzo/balsa#readme",
+  "devDependencies": {
+    "horsea": "^1.0.1"
+  }
 }
