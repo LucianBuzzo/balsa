@@ -1,14 +1,14 @@
 {
-  "name": "balsa",
+  "name": "beedrill",
   "version": "1.0.0",
   "description": "A tiny library of utility functions",
-  "main": "balsa.js",
+  "main": "beedrill.js",
   "scripts": {
-    "test": "node tests/balsa.test.js"
+    "test": "node tests/beedrill.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LucianBuzzo/balsa.git"
+    "url": "git+https://github.com/LucianBuzzo/beedrill.git"
   },
   "keywords": [
     "utility",
@@ -17,9 +17,9 @@
   "author": "Lucian Buzzo <lucian.buzzo@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LucianBuzzo/balsa/issues"
+    "url": "https://github.com/LucianBuzzo/beedrill/issues"
   },
-  "homepage": "https://github.com/LucianBuzzo/balsa#readme",
+  "homepage": "https://github.com/LucianBuzzo/beedrill#readme",
   "devDependencies": {
     "horsea": "^1.0.1"
   }
