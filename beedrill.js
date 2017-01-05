@@ -115,17 +115,17 @@
    * @desc Base function to add prototype methods to.
    * @returns {void}
    */
-  var Balsa = function Balsa() { };
+  var Beedrill = function Beedrill() { };
 
-  Balsa.prototype.isUndefined = isUndefined;
-  Balsa.prototype.isString = isString;
-  Balsa.prototype.isArray = isArray;
-  Balsa.prototype.isObject = isObject;
+  Beedrill.prototype.isUndefined = isUndefined;
+  Beedrill.prototype.isString = isString;
+  Beedrill.prototype.isArray = isArray;
+  Beedrill.prototype.isObject = isObject;
 
-  Balsa.prototype.has = has;
-  Balsa.prototype.keys = keys;
-  Balsa.prototype.clone = clone;
-  Balsa.prototype.pick = pick;
+  Beedrill.prototype.has = has;
+  Beedrill.prototype.keys = keys;
+  Beedrill.prototype.clone = clone;
+  Beedrill.prototype.pick = pick;
 
-  return new Balsa();
+  return new Beedrill();
 }));
