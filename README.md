@@ -177,7 +177,7 @@ a single string or an array of strings.
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>Object</code> | The source object |
-| keys | <code>String | Array</code> | The property keys to pick |
+| keys | <code>String / Array</code> | The property keys to pick |
 
 **Example**  
 ```js
