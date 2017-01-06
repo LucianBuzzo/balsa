@@ -4,7 +4,8 @@
   "description": "A tiny library of utility functions",
   "main": "beedrill.js",
   "scripts": {
-    "test": "node tests/beedrill.test.js"
+    "test": "node tests/beedrill.test.js",
+    "readme": "jsdoc2md --template doc/README.hbs beedrill.js > README.md"
   },
   "repository": {
     "type": "git",
