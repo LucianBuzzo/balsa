@@ -111,6 +111,24 @@
     return JSON.parse(JSON.stringify(value));
   };
 
+
+  /**
+   * @function random
+   * @desc Returns a random integer between min and max, inclusive.
+   *
+   * @param {Number} min - The lowest possible random number.
+   * @param {Number} max - The highest possible random number.
+   *
+   * @returns {Number} - A random number between min and max
+   *
+   * @example
+   *
+   * const num = B.random(0, 100); // --> 36
+   */
+  const random = function random(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
+  };
+
   /**
    * @desc Base function to add prototype methods to.
    * @returns {void}
@@ -126,6 +144,7 @@
   Beedrill.prototype.keys = keys;
   Beedrill.prototype.clone = clone;
   Beedrill.prototype.pick = pick;
+  Beedrill.prototype.random = random;
 
   return new Beedrill();
 }));

@@ -1,6 +1,6 @@
 /* eslint no-undefined: "off" */
 const T = require('horsea');
-const B = require('../balsa');
+const B = require('../beedrill');
 
 
 /**
@@ -134,6 +134,27 @@ T.block('When using the "pick" method:', function() {
   T.assert(result2.hasOwnProperty('foo') && result2.hasOwnProperty('bar'), 'If the keys argument is an array, the returned object should contain the chosen property');
 
   T.assert(Object.keys(result2).length === 2 && !result2.hasOwnProperty('hello'), 'If the keys argument is an array, the returned object should only contain the chosen property');
+});
+
+
+/**
+ * random
+ */
+T.block('When using the "random" method:', function() {
+  let min = 100;
+  let max = 200;
+  let cycleCount = 0;
+  let pass = true;
+
+  while (cycleCount < 1000) {
+    cycleCount++;
+    if (B.random(min, max) < min) {
+      pass = false;
+      break;
+    }
+  }
+
+  T.assert(pass, 'It should produce a random number greater than or equal to the minimum number');
 });
 
 T.end();

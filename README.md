@@ -21,6 +21,7 @@ $ npm install --save beedrill
     * [.keys(object)](#module_beedrill.keys)
     * [.clone(value)](#module_beedrill.clone)
     * [.pick(object, keys)](#module_beedrill.pick)
+    * [.random(min, max)](#module_beedrill.random)
 
 
 <a name="module_beedrill.isUndefined"></a>
@@ -191,4 +192,22 @@ const object = {
 
 B.pick(object, 'foo'); // --> { foo: 1 }
 B.pick(object, ['bar', 'hello']); // --> { bar: 2, hello: 3 }
+```
+
+
+<a name="module_beedrill.random"></a>
+
+### beedrill.random(min, max)
+Returns a random integer between min and max, inclusive.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| min | <code>Number</code> | The lowest possible random number |
+| max | <code>Number</code> | The highest possible random number |
+
+**Example**  
+```js
+const B = require('beedrill');
+
+const num = B.random(0, 100); // --> 36
 ```
