@@ -157,4 +157,23 @@ T.block('When using the "random" method:', function() {
   T.assert(pass, 'It should produce a random number greater than or equal to the minimum number');
 });
 
+/**
+ * unique
+ */
+T.block('When using the "unique" method:', function() {
+  var list = [1, 2, 1, 3, 1, 4];
+
+  var uniqueList = B.unique(list);
+
+  T.assert(
+    uniqueList.length === 4 &&
+    uniqueList[0] === 1 &&
+    uniqueList[1] === 2 &&
+    uniqueList[2] === 3 &&
+    uniqueList[3] === 4,
+    'It should find the unique values of an array'
+  );
+});
+
+
 T.end();

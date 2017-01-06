@@ -129,6 +129,47 @@
     return min + Math.floor(Math.random() * (max - min + 1));
   };
 
+
+  /**
+   * @function unique
+   * @desc Produces a duplicate-free version of the array, using === to test object equality.
+   *
+   * @param {Array} array - The array to inspect
+   *
+   * @returns {Array} - Returns the new duplicate free array.
+   *
+   * @example
+   *
+   * const source = [1, 2, 3, 1, 5, 5, 3, 2, 1];
+   *
+   * const uniqueSource = B.unique(source); // -->  [1, 2, 3, 5,]
+   */
+  const unique = function unique(array) {
+    var len = array.length;
+    var computed = [];
+    for (var i = 0; i < len; i++) {
+      var item = array[i];
+      var seen = false;
+      if (!computed.length) {
+        computed.push(item);
+        continue;
+      }
+
+      for (var j = 0; j < computed.length; j++) {
+        if (item === computed[j]) {
+          seen = true;
+          break;
+        }
+      }
+
+      if (!seen) {
+        computed.push(item);
+      }
+    }
+
+    return computed;
+  };
+
   /**
    * @desc Base function to add prototype methods to.
    * @returns {void}
@@ -145,6 +186,7 @@
   Beedrill.prototype.clone = clone;
   Beedrill.prototype.pick = pick;
   Beedrill.prototype.random = random;
+  Beedrill.prototype.unique = unique;
 
   return new Beedrill();
 }));
