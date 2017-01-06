@@ -10,10 +10,15 @@
    * @module beedrill
    */
 
+
+  var Beedrill = function Beedrill() { };
+
+
   /**
-   * @function isUndefined
+   * @method isUndefined
    * @desc Returns a boolean indicating if the value is undefined.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Mixed} value - Value to check.
    * @return {Boolean} - true if the value is undefined, false otherwise.
@@ -25,7 +30,7 @@
    *
    * B.isUndefined(foo); // --> true
    */
-  var isUndefined = function isUndefined(value) {
+  Beedrill.prototype.isUndefined = function isUndefined(value) {
     return typeof value === 'undefined';
   };
 
@@ -34,6 +39,7 @@
    * @function isString
    * @desc Returns a boolean indicating if the value is a string.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Mixed} value - Value to check.
    * @return {Boolean} - true if the value is a string, false otherwise.
@@ -47,7 +53,7 @@
    * B.isString(foo); // --> true
    * B.isString(bar); // --> false
    */
-  var isString = function isString(value) {
+  Beedrill.prototype.isString = function isString(value) {
     return typeof value === 'string';
   };
 
@@ -55,6 +61,7 @@
   /**
    * @function isArray
    * @desc Returns a boolean indicating if the value is an array.
+   * @memberof module:beedrill
    * @public
    *
    * @param {Mixed} value - Value to check.
@@ -69,7 +76,7 @@
    * B.isArray(foo); // --> false
    * B.isArray(bar); // --> true
    */
-  var isArray = function isArray(value) {
+  Beedrill.prototype.isArray = function isArray(value) {
     return Object.prototype.toString.call(value) === '[object Array]';
   };
 
@@ -78,6 +85,7 @@
    * @function isObject
    * @desc Returns a boolean indicating if the value is an object literal.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Mixed} value - Value to check.
    * @return {Boolean} - true if the value is an object, false otherwise.
@@ -91,7 +99,7 @@
    * B.isObject(foo); // --> false
    * B.isObject(bar); // --> true
    */
-  var isObject = function isObject(value) {
+  Beedrill.prototype.isObject = function isObject(value) {
     return Object.prototype.toString.call(value) === '[object Object]';
   };
 
@@ -100,10 +108,11 @@
    * @function has
    * @desc Checks if key is a direct property of object.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Object} object - The object to check.
    * @param {String} key - The key to check.
-   * @return {undefined} - Returns true if the key exists, else false.
+   * @return {Boolean} - Returns true if the key exists, else false.
    *
    * @example
    * const B = require('beedrill');
@@ -113,7 +122,7 @@
    * B.has(foo, 'bar'); // --> false
    * B.has(foo, 'hello'); // --> true
    */
-  var has = function has(object, key) {
+  Beedrill.prototype.has = function has(object, key) {
     return object ? hasOwnProperty.call(object, key) : false;
   };
 
@@ -121,6 +130,7 @@
    * @function keys
    * @desc Creates an array of the own enumerable property names of object.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Object} object - The object to retrieve property names from.
    * @return {Array} - An array of property names.
@@ -135,7 +145,7 @@
    *
    * B.keys(object); // --> ['hello', 'foo']
    */
-  var keys = function keys(object) {
+  Beedrill.prototype.keys = function keys(object) {
     return Object.keys(object);
   };
 
@@ -143,6 +153,7 @@
    * @function pick
    * @desc Creates an object composed of the picked object properties.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Object} object - The source object.
    * @param {String | Array} keys - The property keys to pick.
@@ -160,12 +171,12 @@
    * B.pick(object, 'foo'); // --> { foo: 1 }
    * B.pick(object, ['bar', 'hello']); // --> { bar: 2, hello: 3 }
    */
-  var pick = function pick(object, keys) {
+  Beedrill.prototype.pick = function pick(object, keys) {
     var newObject = {};
-    keys = isString(keys) ? [keys] : keys;
+    keys = this.isString(keys) ? [keys] : keys;
     keys.forEach(function(v) {
       if (object.hasOwnProperty(v)) {
-        newObject[v] = clone(object[v]);
+        newObject[v] = object[v];
       }
     });
     return newObject;
@@ -177,6 +188,7 @@
    * @function clone
    * @desc Creates a clone of a simple object
    * @public
+   * @memberof module:beedrill
    *
    * @param {Object} value - The object to clone.
    *
@@ -189,7 +201,7 @@
    *
    * B.clone(object); // --> { foo: 'bar' }
    */
-  var clone = function clone(value) {
+  Beedrill.prototype.clone = function clone(value) {
     return JSON.parse(JSON.stringify(value));
   };
 
@@ -198,6 +210,7 @@
    * @function random
    * @desc Returns a random integer between min and max, inclusive.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Number} min - The lowest possible random number.
    * @param {Number} max - The highest possible random number.
@@ -206,9 +219,10 @@
    *
    * @example
    * const B = require('beedrill');
+   *
    * const num = B.random(0, 100); // --> 36
    */
-  const random = function random(min, max) {
+  Beedrill.prototype.random = function random(min, max) {
     return min + Math.floor(Math.random() * (max - min + 1));
   };
 
@@ -217,6 +231,7 @@
    * @function unique
    * @desc Produces a duplicate-free version of the array, using === to test object equality.
    * @public
+   * @memberof module:beedrill
    *
    * @param {Array} array - The array to inspect
    *
@@ -224,11 +239,12 @@
    *
    * @example
    * const B = require('beedrill');
+   *
    * const source = [1, 2, 3, 1, 5, 5, 3, 2, 1];
    *
    * const uniqueSource = B.unique(source); // -->  [1, 2, 3, 5,]
    */
-  const unique = function unique(array) {
+  Beedrill.prototype.unique = function unique(array) {
     var len = array.length;
     var computed = [];
     for (var i = 0; i < len; i++) {
@@ -253,24 +269,6 @@
 
     return computed;
   };
-
-  /**
-   * @desc Base function to add prototype methods to.
-   * @returns {void}
-   */
-  var Beedrill = function Beedrill() { };
-
-  Beedrill.prototype.isUndefined = isUndefined;
-  Beedrill.prototype.isString = isString;
-  Beedrill.prototype.isArray = isArray;
-  Beedrill.prototype.isObject = isObject;
-
-  Beedrill.prototype.has = has;
-  Beedrill.prototype.keys = keys;
-  Beedrill.prototype.clone = clone;
-  Beedrill.prototype.pick = pick;
-  Beedrill.prototype.random = random;
-  Beedrill.prototype.unique = unique;
 
   return new Beedrill();
 }));
