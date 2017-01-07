@@ -2,7 +2,7 @@
   if (typeof module === 'object' && module.exports) {
     module.exports = factory();
   } else {
-    root.myModule = factory();
+    root.beedrill = factory();
   }
 }(this, function factory() {
 
